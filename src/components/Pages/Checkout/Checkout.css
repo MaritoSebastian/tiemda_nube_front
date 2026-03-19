@@ -1,0 +1,95 @@
+.checkout-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.checkout-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 🛒 RESUMEN */
+
+.checkout-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.checkout-item {
+  display: flex;
+  gap: 10px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.checkout-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-title {
+  font-weight: bold;
+}
+
+/* 💰 TOTAL */
+
+.checkout-total {
+  text-align: center;
+  margin: 20px 0;
+  color: #cc0000;
+}
+
+/* 🧾 FORM */
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkout-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* 💳 BOTÓN PAGAR */
+
+.checkout-pay {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+
+  background: linear-gradient(
+    135deg,
+    rgba(213, 43, 30, 0.9),
+    rgba(0, 56, 168, 0.9)
+  );
+
+  color: white;
+  transition: 0.3s;
+}
+
+.checkout-pay:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+@media (max-width: 600px) {
+  .checkout-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .checkout-item img {
+    width: 100%;
+    height: auto;
+  }
+}

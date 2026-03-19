@@ -1,0 +1,35 @@
+.footer {
+  background: linear-gradient(to right, #d52b1e, #0038a8);
+  color: white;
+  padding-top: 40px;
+  
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0 20px 40px;
+}
+
+.footer-section {
+  max-width: 250px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  font-size: 14px;
+  margin: 4px 0;
+  color: #ccc;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px;
+  background: #000;
+  font-size: 13px;
+}

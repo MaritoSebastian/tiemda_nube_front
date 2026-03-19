@@ -1,0 +1,31 @@
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(213, 43, 30, 0.9),
+    rgba(0, 56, 168, 0.9)
+    
+  ); 
+  color:white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.checkout-btn:hover {
+  background:linear-gradient(
+    135deg,
+    rgba(213, 43, 30, 0.9),
+    rgba(0, 56, 168, 0.9)
+  );  
+  transform: scale(1.02);
+}
+
+.checkout-btn:active {
+  transform: scale(0.98);
+}
