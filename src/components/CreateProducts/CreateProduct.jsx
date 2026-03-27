@@ -1,13 +1,14 @@
-import { useState,useRef } from "react";
+import { useState, useRef } from "react";
 import "./CreateProduct.css";
 
 const CreateProduct = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     title: "",
     price: "",
     stock: "",
     category: "",
-    description: ""
+    description: "",
   });
 
   const [imageFile, setImageFile] = useState(null);
@@ -17,7 +18,7 @@ const CreateProduct = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -27,42 +28,37 @@ const CreateProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(loading) return;
+    if (loading) return;
     if (
-  !formData.title ||
-  !formData.price ||
-  !formData.stock ||
-  !formData.category ||
-  !formData.description
-) {
-  alert("Todos los campos son obligatorios");
-  return;
-}
+      !formData.title ||
+      !formData.price ||
+      !formData.stock ||
+      !formData.category ||
+      !formData.description
+    ) {
+      alert("Todos los campos son obligatorios");
+      return;
+    }
 
-if (!imageFile) {
-  alert("Debes seleccionar una imagen");
-  return;
-}
+    if (!imageFile) {
+      alert("Debes seleccionar una imagen");
+      return;
+    }
 
-    
     setLoading(true);
 
     try {
       let imageUrl = "";
-
 
       // 1️⃣ Subir imagen si existe
       if (imageFile) {
         const formDataImage = new FormData();
         formDataImage.append("image", imageFile);
 
-        const uploadRes = await fetch(
-          "https://mario-ml-aapi.vercel.app/api/upload",
-          {
-            method: "POST",
-            body: formDataImage
-          }
-        );
+        const uploadRes = await fetch(`${API_URL}/api/upload`, {
+          method: "POST",
+          body: formDataImage,
+        });
 
         const uploadData = await uploadRes.json();
 
@@ -75,21 +71,21 @@ if (!imageFile) {
 
       // 2️⃣ Crear producto
       const productRes = await fetch(
-        "https://mario-ml-aapi.vercel.app/api/products",
+        `${API_URL}/api/products`,
+
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             ...formData,
-            price:Number(formData.price),
+            price: Number(formData.price),
             stock: Number(formData.stock),
             images: imageUrl ? [imageUrl] : [],
-            createdAt: new Date()
-
-          })
-        }
+            createdAt: new Date(),
+          }),
+        },
       );
 
       const result = await productRes.json();
@@ -102,16 +98,14 @@ if (!imageFile) {
           price: "",
           stock: "",
           category: "",
-          description: ""
+          description: "",
         });
 
         setImageFile(null);
-        fileInputRef.current.value=""
-        
+        fileInputRef.current.value = "";
       } else {
         alert("Error al crear producto");
       }
-
     } catch (error) {
       console.error(error);
       alert("Error de conexión");
@@ -167,8 +161,6 @@ if (!imageFile) {
           accept="image/*"
           onChange={handleImageChange}
           ref={fileInputRef}
-          
-
         />
 
         <button type="submit" disabled={loading}>
@@ -180,4 +172,3 @@ if (!imageFile) {
 };
 
 export default CreateProduct;
-
