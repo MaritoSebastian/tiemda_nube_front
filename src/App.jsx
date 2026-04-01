@@ -9,6 +9,9 @@ import { CartProvider } from "./context/CartContext";
 import Cart from "./components/cart/Cart";
 import { Route, Routes } from "react-router-dom";
 import Checkout from "./components/Pages/Checkout/Checkout";
+import Success from "./components/Pages/PaymentStatus/Success";
+import Error from "./components/Pages/PaymentStatus/Error";
+import Pending from "./components/Pages/PaymentStatus/Pending";
 
 function App() {
   return (
@@ -18,12 +21,16 @@ function App() {
         <Banner />
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="Cart" element={<Cart/>} />
+          <Route path="/cart" element={<Cart/>} />
           <Route path="/checkout" element={<Checkout/>}  />
+           {/* 🔥 RUTAS DE PAGO */}
+         <Route path="/success" element={<Success />} />
+         <Route path="/error" element={<Error />} />
+       <Route path="/pending" element={<Pending />} />
         </Routes>
 
         <Footer />
-      </CartProvider>
+      </CartProvider>  
     </>
   );
 }

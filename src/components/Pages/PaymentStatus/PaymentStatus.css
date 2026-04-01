@@ -1,0 +1,88 @@
+.status-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a; /* oscuro elegante */
+}
+
+.status-card {
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.5s ease;
+}
+
+.status-card h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.status-card p {
+  color: #cbd5f5;
+  margin-bottom: 20px;
+}
+
+/* BOTÓN */
+.status-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+/* COLORES POR ESTADO */
+.success h1 {
+  color: #22c55e;
+}
+
+.success .status-btn {
+  background: #22c55e;
+}
+
+.success .status-btn:hover {
+  background: #16a34a;
+}
+
+.error h1 {
+  color: #ef4444;
+}
+
+.error .status-btn {
+  background: #ef4444;
+}
+
+.error .status-btn:hover {
+  background: #dc2626;
+}
+
+.pending h1 {
+  color: #facc15;
+}
+
+.pending .status-btn {
+  background: #facc15;
+  color: black;
+}
+
+.pending .status-btn:hover {
+  background: #eab308;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
