@@ -18,8 +18,8 @@ const Checkout = () => {
       body: JSON.stringify({
         items: cart.map(item => ({
           title: item.title,
-          price: item.price,
-          quantity: item.quantity
+          price:Number(item.price),
+          quantity: Number(item.quantity)
         }))
       }),
     });
