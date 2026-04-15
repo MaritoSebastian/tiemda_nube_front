@@ -12,13 +12,16 @@ import Checkout from "./components/Pages/Checkout/Checkout";
 import Success from "./components/Pages/PaymentStatus/Success";
 import Error from "./components/Pages/PaymentStatus/Error";
 import Pending from "./components/Pages/PaymentStatus/Pending";
-
+import { useLocation } from "react-router-dom";
 function App() {
+   const location=useLocation();
+    const hideLayout=["/success","/error","/pending"].includes(location.pathname);
   return (
     <>
       <CartProvider>
-        <Navbar />
-        <Banner />
+        {!hideLayout &&<Navbar />};
+         {!hideLayout &&<Banner />};
+    
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/cart" element={<Cart/>} />
@@ -29,7 +32,7 @@ function App() {
        <Route path="/pending" element={<Pending />} />
         </Routes>
 
-        <Footer />
+         {!hideLayout && <Footer />}
       </CartProvider>  
     </>
   );
