@@ -19,8 +19,8 @@ function App() {
   return (
     <>
       <CartProvider>
-        {!hideLayout &&<Navbar />};
-         {!hideLayout &&<Banner />};
+        {!hideLayout &&<Navbar />}
+         {!hideLayout &&<Banner />}
     
         <Routes>
           <Route path="/" element={<Home/>} />
