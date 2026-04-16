@@ -15,7 +15,14 @@ import Pending from "./components/Pages/PaymentStatus/Pending";
 import { useLocation } from "react-router-dom";
 function App() {
    const location=useLocation();
-    const hideLayout=["/success","/error","/pending"].includes(location.pathname);
+const hiddenRoutes = ["/success", "/error", "/pending"];
+
+const hideLayout = hiddenRoutes.some(route =>
+  location.pathname.startsWith(route)
+);
+
+    //const hideLayout=["/success","/error","/pending"].includes(location.pathname);
+   
   return (
   
     <>
@@ -28,9 +35,9 @@ function App() {
           <Route path="/cart" element={<Cart/>} />
           <Route path="/checkout" element={<Checkout/>}  />
            {/* 🔥 RUTAS DE PAGO */}
-         <Route path="/success" element={<Success />} />
-         <Route path="/error" element={<Error />} />
-       <Route path="/pending" element={<Pending />} />
+         <Route path="/success/*" element={<Success />} />
+         <Route path="/error/*" element={<Error />} />
+       <Route path="/pending/*" element={<Pending />} />
         </Routes>
 
          {!hideLayout && <Footer />}
