@@ -17,7 +17,7 @@ function App() {
    const location=useLocation();
     const hideLayout=["/success","/error","/pending"].includes(location.pathname);
   return (
-    // prueba de git 
+  
     <>
       <CartProvider>
         {!hideLayout &&<Navbar />}
