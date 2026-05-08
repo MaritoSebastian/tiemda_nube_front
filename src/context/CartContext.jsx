@@ -48,7 +48,7 @@ export const CartProvider = ({ children }) => {
   };
   // Vaciar Carrito
   const clearCart = () => {
-    setCart([]);localStorage.removeItem(cart);
+    setCart([]);localStorage.removeItem("cart");
   };
   // total de productos
   const gettotalProducts = () => {

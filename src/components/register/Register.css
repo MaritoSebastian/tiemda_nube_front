@@ -1,0 +1,159 @@
+/* Register.css - Colores de la bandera de Paraguay 🇵🇾 */
+
+.auth-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+}
+
+.auth-form {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Banderas arriba y abajo 🇵🇾 */
+.flag-top {
+  height: 8px;
+  background: linear-gradient(90deg, #CC0C2B 0%, #CC0C2B 33%, #FFFFFF 33%, #FFFFFF 66%, #002776 66%, #002776 100%);
+}
+
+.flag-bottom {
+  height: 8px;
+  background: linear-gradient(90deg, #002776 0%, #002776 33%, #FFFFFF 33%, #FFFFFF 66%, #CC0C2B 66%, #CC0C2B 100%);
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin: 1.5rem 0 0.5rem;
+  font-size: 2rem;
+}
+
+.red-text {
+  color: #CC0C2B;
+}
+
+.blue-text {
+  color: #002776;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.auth-form form {
+  padding: 0 2rem 2rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #CC0C2B;
+  box-shadow: 0 0 0 3px rgba(204, 12, 43, 0.1);
+}
+
+.auth-form input:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.btn-register {
+  width: 100%;
+  padding: 14px;
+  background: #002776;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-register:hover:not(:disabled) {
+  background: #001a4f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 39, 118, 0.3);
+}
+
+.btn-register:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.error-message {
+  background: #ffe5e5;
+  color: #CC0C2B;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  border-left: 4px solid #CC0C2B;
+}
+
+.success-message {
+  background: #e5f5e5;
+  color: #002776;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  border-left: 4px solid #002776;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-bottom: 1rem;
+  color: #666;
+}
+
+.auth-link a {
+  color: #CC0C2B;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-form {
+    margin: 1rem;
+  }
+  
+  .auth-form form {
+    padding: 0 1.5rem 1.5rem;
+  }
+  
+  .auth-form h2 {
+    font-size: 1.5rem;
+  }
+}

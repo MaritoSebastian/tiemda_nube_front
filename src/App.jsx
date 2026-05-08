@@ -1,48 +1,91 @@
+
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Banner from "./components/Banner/Banner";
-import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Pages/Home/Home";
-import CreateProduct from "./components/CreateProducts/CreateProduct";
-import ProductList from "./components/ProductList/ProductList";
-import { CartProvider } from "./context/CartContext";
 import Cart from "./components/cart/Cart";
-import { Route, Routes } from "react-router-dom";
 import Checkout from "./components/Pages/Checkout/Checkout";
 import Success from "./components/Pages/PaymentStatus/Success";
 import Error from "./components/Pages/PaymentStatus/Error";
 import Pending from "./components/Pages/PaymentStatus/Pending";
-import { useLocation } from "react-router-dom";
-function App() {
-   const location=useLocation();
-const hiddenRoutes = ["/success", "/error", "/pending"];
+import Register from "./components/register/Register";
+import Login from "./components/login/Login";
+import "./App.css";
 
-const hideLayout = hiddenRoutes.some(route =>
-  location.pathname.startsWith(route)
-);
-
-    //const hideLayout=["/success","/error","/pending"].includes(location.pathname);
-   
-  return (
+// Componente para proteger rutas
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, initialLoading } = useAuth();
   
-    <>
+  if (initialLoading) {
+    return <div>Cargando...</div>;
+  }
+  
+  return isAuthenticated() ? children : <Navigate to="/login" />;
+};
+
+function App() {
+  const location = useLocation();
+  const hiddenRoutes = ["/success", "/error", "/pending"];
+
+  const hideLayout = hiddenRoutes.some((route) =>
+    location.pathname.startsWith(route),
+  );
+
+  return (
+    <AuthProvider>
       <CartProvider>
-        {!hideLayout &&<Navbar />}
-         {!hideLayout &&<Banner />}
-    
+        {!hideLayout && <Navbar />}
+        {!hideLayout && <Banner />}
+
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/cart" element={<Cart/>} />
-          <Route path="/checkout" element={<Checkout/>}  />
-           {/* 🔥 RUTAS DE PAGO */}
-         <Route path="/success/*" element={<Success />} />
-         <Route path="/error/*" element={<Error />} />
-       <Route path="/pending/*" element={<Pending />} />
+          {/* RUTAS PÚBLICAS (no requieren login) */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+
+          {/* RUTAS PROTEGIDAS (requieren login) */}
+          <Route path="/" element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/cart" element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/checkout" element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/success/*" element={
+            <ProtectedRoute>
+              <Success />
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/error/*" element={
+            <ProtectedRoute>
+              <Error />
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/pending/*" element={
+            <ProtectedRoute>
+              <Pending />
+            </ProtectedRoute>
+          } />
         </Routes>
 
-         {!hideLayout && <Footer />}
-      </CartProvider>  
-    </>
+        {!hideLayout && <Footer />}
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
