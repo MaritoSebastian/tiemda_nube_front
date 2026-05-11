@@ -24,26 +24,44 @@ useEffect(() => {
   }
 }, []);
   
-  const register = async (userData) => {
-    setLoading(true);
-    try {
-      const data = await api("/api/auth/register", {
-        method: "POST",
-        body: JSON.stringify(userData),
-      });
+const register = async (userData) => {
+  setLoading(true);
+  try {
+    const { confirmPassword, ...cleanData } = userData;
+    
+    console.log("📤 Enviando al backend:", cleanData);
+    
+    const response = await fetch("https://mario-ml-aapi.vercel.app/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cleanData),
+    });
 
-      localStorage.setItem("token", data.token);
-      setUser(data.user);
-      return { success: true };
-    } catch (error) {
-      return {
-        success: false,
-        error: error.message || "Error al registrarse",
-      };
-    } finally {
-      setLoading(false);
+    console.log("📥 Status:", response.status);
+    
+    const data = await response.json();
+    console.log("📥 Respuesta completa:", data);
+    
+    if (!response.ok) {
+      
+      throw new Error(data.error || "Error en el servidor");
     }
-  };
+
+    localStorage.setItem("token", data.token);
+    setUser(data.user);
+    return { success: true };
+  } catch (error) {
+    console.error("❌ Error en register:", error);
+    return {
+      success: false,
+      error: error.message || "Error al registrarse",
+    };
+  } finally {
+    setLoading(false);
+  }
+};
 
   const login = async (email, password) => {
     setLoading(true);
