@@ -32,6 +32,13 @@ const Login = () => {
   return (
     <div className="auth-container">
       <form className="auth-form login-form" onSubmit={handleSubmit}>
+        <div className="paraguay-flag-decorative">
+          <div className="flag-stripes">
+            <div className="flag-red-stripe"></div>
+            <div className="flag-white-stripe"></div>
+            <div className="flag-blue-stripe"></div>
+          </div>
+        </div>
         <h2>
           <span className="red-text">Iniciar</span>{" "}
           <span className="blue-text">Sesión</span>
@@ -63,6 +70,9 @@ const Login = () => {
         <button type="submit" className="btn-login" disabled={loading}>
           {loading ? "Ingresando..." : "Ingresar"}
         </button>
+         <div className="auth-link">
+           <Link to="/reset-password">Olvidaste tu contraseña?</Link>
+        </div>
 
         <div className="auth-link">
           ¿No tenés cuenta? <Link to="/register">Registrate</Link>

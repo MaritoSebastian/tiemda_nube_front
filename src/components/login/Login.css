@@ -1,5 +1,5 @@
 /* components/login/Login.css */
-.auth-container {
+/*.auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,4 +103,189 @@
 
 .auth-link a:hover {
   text-decoration: underline;
+}*/
+/* components/login/Login.css */
+
+.paraguay-flag-decorative {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.flag-stripes {
+  width: 80px;
+  height: 50px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.flag-red-stripe {
+  height: 33.33%;
+  background: #d52b1e;
+}
+
+.flag-white-stripe {
+  height: 33.33%;
+  background: white;
+}
+
+.flag-blue-stripe {
+  height: 33.33%;
+  background: #0038a8;
+}
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  /* Imagen de fondo */
+  background-image: url('/tiendanube_front/public/image/ciudad_este_op.jpeg'); /* Cambiá por tu ruta */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Capa oscura opcional sobre la imagen (para mejor contraste) */
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.auth-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+/* Header con bandera de Paraguay */
+.auth-form h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.auth-form h2::before {
+  content: "🇵🇾";
+  font-size: 2rem;
+}
+
+.auth-form h2::after {
+  content: "🇵🇾";
+  font-size: 2rem;
+}
+
+.red-text {
+  color: #ff6b6b;
+}
+
+.blue-text {
+  color: #6ea8fe;
+}
+
+.subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.8rem;
+  font-size: 0.9rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: white;
+  transition: all 0.3s;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #ffde34;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px rgba(255, 222, 52, 0.2);
+}
+
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #d52b1e, #0038a8);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #c8231a, #002a8a);
+}
+
+.btn-login:disabled {
+  background: linear-gradient(135deg, #999, #666);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  background: rgba(220, 53, 69, 0.2);
+  backdrop-filter: blur(5px);
+  color: #ffb3b3;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+  border: 1px solid rgba(220, 53, 69, 0.5);
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.auth-link a {
+  color: #ffde34;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+  color: white;
 }

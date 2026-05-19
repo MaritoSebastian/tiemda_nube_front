@@ -14,6 +14,8 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import CreateProduct from "./components/CreateProducts/CreateProduct";
 import "./App.css";
+import PasswordResetPage from "./components/Pages/PasswordResetPage";
+;
 
 // Componente para proteger rutas de PAGO (solo requiere login)
 const ProtectedRoute = ({ children }) => {
@@ -65,6 +67,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/reset-password" element={<PasswordResetPage />} />
 
           {/* RUTAS PROTEGIDAS (requieren login para pagar) */}
           <Route

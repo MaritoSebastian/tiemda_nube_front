@@ -1,6 +1,6 @@
 /* Register.css - Colores de la bandera de Paraguay 🇵🇾 */
 
-.auth-container {
+/*.auth-container {
   min-height: 80vh;
   display: flex;
   align-items: center;
@@ -20,7 +20,7 @@
 }
 
 /* Banderas arriba y abajo 🇵🇾 */
-.flag-top {
+/*.flag-top {
   height: 8px;
   background: linear-gradient(90deg, #CC0C2B 0%, #CC0C2B 33%, #FFFFFF 33%, #FFFFFF 66%, #002776 66%, #002776 100%);
 }
