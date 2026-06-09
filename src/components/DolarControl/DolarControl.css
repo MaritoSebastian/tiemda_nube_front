@@ -1,0 +1,128 @@
+/* Estilo base - más compacto para navbar */
+.dolar-control {
+  background-color: white;
+  border-radius: 2rem;
+  padding: 0.3rem 0.8rem;    /* reducido */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;               /* reducido */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-family: system-ui, sans-serif;
+  position: relative;
+  white-space: nowrap;       /* evita que se parta */
+}
+
+.dolar-value {
+  font-weight: bold;
+  font-size: 1rem;           /* más pequeño */
+  background: linear-gradient(135deg, #0033a0 0%, #0033a0 50%, #cc0000 50%, #cc0000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  padding-right: 0.3rem;
+  border-right: 1px solid #ccc;
+}
+
+.dolar-actions {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.dolar-actions input {
+  border: 1px solid #0033a0;
+  border-radius: 1rem;
+  padding: 0.2rem 0.5rem;
+  width: 70px;               /* más angosto */
+  font-size: 0.8rem;
+  outline: none;
+}
+
+.dolar-actions button {
+  background-color: #0033a0;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.75rem;
+  transition: background 0.2s;
+}
+
+.dolar-actions button:last-child {
+  background-color: #cc0000;
+}
+
+.dolar-mensaje {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+/* Para pantallas entre 1025px y 1200px - aún más compacto */
+@media (max-width: 1200px) {
+  .dolar-control {
+    padding: 0.2rem 0.5rem;
+    gap: 0.3rem;
+  }
+  .dolar-value {
+    font-size: 0.9rem;
+  }
+  .dolar-actions input {
+    width: 60px;
+    font-size: 0.75rem;
+    padding: 0.1rem 0.4rem;
+  }
+  .dolar-actions button {
+    padding: 0.1rem 0.5rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* Para móvil (dentro del menú hamburguesa) - se muestra en columna */
+@media (max-width: 768px) {
+  .dolar-control {
+    background-color: transparent;
+    padding: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    box-shadow: none;
+    white-space: normal;
+  }
+  .dolar-value {
+    background: white;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: white;
+    text-shadow: 1px 1px 0 #000;
+    border-right: none;
+    font-size: 1.1rem;
+  }
+  .dolar-actions {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .dolar-actions input {
+    width: 100px;
+    background: rgba(255,255,255,0.9);
+  }
+  .dolar-actions button {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  .dolar-mensaje {
+    position: static;
+    margin-top: 0.5rem;
+    white-space: normal;
+  }
+}
