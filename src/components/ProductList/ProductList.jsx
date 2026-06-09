@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import ProductsCard from "../productscard/ProductsCard";
+import { useDolar } from "../../context/DolarContext";
 const ProductList = () => {
 const API_URL = import.meta.env.VITE_API_URL;
 console.log("ENV:", import.meta.env);
+const{refreshTrigger}=useDolar();
   const [productos, setProductos] = useState([]);
   useEffect(() => {
   
@@ -17,7 +19,7 @@ console.log("ENV:", import.meta.env);
       }
     };
     obtenerProductos();
-  }, [API_URL]);
+  }, [API_URL,refreshTrigger]);
   return (
     <div className="products-container">
       {productos.map((producto) => (

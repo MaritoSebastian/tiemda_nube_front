@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useCart } from "../../context/useCart";
 import { useAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,61 +8,89 @@ const Navbar = () => {
   const { gettotalProducts } = useCart();
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) setMenuOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleLogout = () => {
     logout();
     navigate("/");
+    setMenuOpen(false);
   };
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <h1 className="logo">Paraguay Shop</h1>
-        <ul className="nav-links">
-          {/* Home - siempre visible */}
-          <li>
-            <Link to="/">Home</Link>
+        <div className="brand-container">
+  <img
+    src="/image/logo.png"
+    alt="Paraguay Shop"
+    className="brand-logo"
+  />
+
+  <span className="brand-text">
+    PARAGUAY SHOP
+  </span>
+</div>
+       
+
+        <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+          <div className={`bar ${menuOpen ? "change" : ""}`}></div>
+          <div className={`bar ${menuOpen ? "change" : ""}`}></div>
+          <div className={`bar ${menuOpen ? "change" : ""}`}></div>
+        </div>
+
+        <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+          <li className="user-name" onClick={closeMenu}>
+            👤 {user?.name || user?.email}
           </li>
 
-          {/* Cart - siempre visible */}
-          <li className="cart-icon">
-            <Link to="/Cart">
-              🛒<span className="cart-count">{gettotalProducts()}</span>
+          <li>
+            <Link to="/" onClick={closeMenu}>
+              🏠Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/Cart" onClick={closeMenu}>
+              🛒 Carrito
+              <span className="cart-count">{gettotalProducts()}</span>
             </Link>
           </li>
 
-          {/* Links que SOLO ve el admin */}
           {isAuthenticated() && user?.role === "admin" && (
             <li>
-              <Link to="/admin/CreateProduct" className="admin-link">
-                ✏️ Crear Producto
+              <Link to="/admin" onClick={closeMenu}>
+                ⚙️ Panel Admin
               </Link>
             </li>
           )}
 
-          {/* Separador visual (opcional) */}
-          <li className="nav-separator">|</li>
-
-          {/* Links según autenticación */}
           {!isAuthenticated() ? (
             <>
               <li>
-                <Link to="/login">Iniciar Sesión</Link>
+                <Link to="/login" onClick={closeMenu}>
+                  Iniciar Sesión
+                </Link>
               </li>
               <li>
-                <Link to="/register">Registrarse</Link>
+                <Link to="/register" onClick={closeMenu}>
+                  Registrarse
+                </Link>
               </li>
             </>
           ) : (
             <>
-              {/* Nombre del usuario logueado */}
-              <li className="user-name">
-                👤 {user?.name || user?.email}
-              </li>
-              {/* Botón de cerrar sesión */}
-              <li>
+              <li className="logout-item">
                 <button onClick={handleLogout} className="logout-btn">
-                  Cerrar Sesión
+                  🚪 Cerrar Sesión
                 </button>
               </li>
             </>
