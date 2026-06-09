@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  background: linear-gradient(to right, #d52b1e, #ffffff, #0038a8);
+  background: linear-gradient(to right, #d52b1e, #0038a8);
   /* 👈 Rojo, Blanco, Azul como la bandera */
   position: sticky;
   top: 0;
