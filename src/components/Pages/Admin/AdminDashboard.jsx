@@ -39,6 +39,17 @@ const AdminDashboard = () => {
             Calculadora
           </Link>
         </div>
+        <div className="admin-card">
+  <h2>🛠️ Gestión</h2>
+  <p>Buscar, editar y eliminar productos existentes.</p>
+
+  <Link
+    to="/admin/products"
+    className="admin-btn"
+  >
+   🛠️  Administrar Productos
+  </Link>
+</div>
       </div>
     </div>
   );

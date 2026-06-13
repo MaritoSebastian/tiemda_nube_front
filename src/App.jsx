@@ -18,6 +18,7 @@ import PasswordResetPage from "./components/Pages/PasswordResetPage";
 import { DolarProvider } from "./context/DolarContext";
 import PriceCalculator from "./components/PriceCalculator/PriceCalculator";
 import AdminDashboard from "./components/Pages/Admin/AdminDashboard";
+import AdminProducts from "./components/Pages/Admin/AdminProducts";
 // Componente para proteger rutas de PAGO (solo requiere login)
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, initialLoading } = useAuth();
@@ -130,6 +131,15 @@ function App() {
                 </AdminRoute>
               }
             />
+             <Route
+              path="/admin/products"
+              element={
+                <AdminRoute>
+                  <AdminProducts />
+                </AdminRoute>
+              }
+            />
+            
           </Routes>
 
           {!hideLayout && <Footer />}

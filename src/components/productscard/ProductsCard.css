@@ -109,8 +109,13 @@
   cursor: pointer;
   transition: 0.3s ease;
 }
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
 /*boton eliminar de lacad en el cart*/
-.btn-remove {
+.btn-edit {
   margin-top: auto;
   padding: 10px;
   border: none;
@@ -120,6 +125,25 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
+}
+.btn-delete {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(90deg, #d10000, #ff4d4d);
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.btn-delete:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
 }
 .cart-actions{
   margin-top: auto;
