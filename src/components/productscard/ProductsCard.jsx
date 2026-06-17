@@ -1,36 +1,36 @@
 import { useCart } from "../../context/useCart";
 import { useDolar } from "../../context/DolarContext";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "./ProductsCard.css";
+ const getPreciomostrado=(producto,dolar)=>{
+
+if(producto.price_usd!=null)   return Math.round(producto.price_usd * dolar);
+return producto.price;
+
+  }
 
 const ProductsCard = ({ producto, isAdmin = false, OnDelete, OnEditing }) => {
   const { addTocart } = useCart();
   const { dolar } = useDolar(); // ← obtener el dólar actual
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(producto);
+ useEffect(() => {
+  if (!isEditing && producto?._id) {
+    setFormData(producto);
+  }
+}, [producto?._id, isEditing]);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(formData);
-    setFormData({ ...formData, [name]: value });
+    
+  setFormData(prev => ({
+  ...prev,
+  [name]: value
+}));
   };
-
-  // Calcular el precio en ARS a mostrar
-  let precioMostrado = null;
-  if (producto.price !== null && producto.price !== undefined) {
-    // Producto con precio fijo en ARS (actualizado por backend si subió el dólar)
-    precioMostrado = producto.price;
-  } else if (
-    producto.price_usd !== null &&
-    producto.price_usd !== undefined &&
-    dolar
-  ) {
-    // Producto con precio fijo en USD: convertir a ARS con el dólar actual
-    precioMostrado = Math.round(producto.price_usd * dolar);
-  }
-
-  // Si no hay precio válido o aún no se cargó el dólar, no mostrar el producto
-  if (precioMostrado === null) return null;
-
+ 
+const PrecioMostrado=getPreciomostrado(producto,dolar)
+  
+if (PrecioMostrado === null) return null;
   return (
     <div className="product-card">
       <div className="product-img">
@@ -95,22 +95,28 @@ const ProductsCard = ({ producto, isAdmin = false, OnDelete, OnEditing }) => {
               onChange={handleChange}
             />
           ) : (
-            <span className="price">${precioMostrado.toLocaleString()}</span>
+           <span className="price">${Number(PrecioMostrado).toLocaleString()}</span>
           )}
         </div>
+        {!isAdmin && (
+          <button
+            className="btn-buy"
+            onClick={() =>
+              addTocart({
+                ...producto,
+                id: producto._id,
+                price: PrecioMostrado,
+              })
+            }
+          >
+            {producto.stock === 0
+              ? "Reservar"
+              : producto.stock === 1
+                ? "Comprar (última)"
+                : "Comprar"}
+          </button>
+        )}
 
-        <button
-          className="btn-buy"
-          onClick={() =>
-            addTocart({ ...producto, id: producto._id, price: precioMostrado })
-          }
-        >
-          {producto.stock === 0
-            ? "Reservar"
-            : producto.stock === 1
-              ? "Comprar (última)"
-              : "Comprar"}
-        </button>
         {isAdmin && (
           <div className="admin-actions">
             {isEditing ? (
@@ -119,10 +125,14 @@ const ProductsCard = ({ producto, isAdmin = false, OnDelete, OnEditing }) => {
                   className="btn-edit"
                   onClick={() => {
                     OnEditing(producto._id, {
-                      ...formData,
+                      title: formData.title,
+                      description: formData.description,
+                      category: formData.category,
+                      images: formData.images,
                       stock: Number(formData.stock),
                       price: formData.price ? Number(formData.price) : null,
                     });
+
                     setIsEditing(false);
                   }}
                 >
