@@ -19,6 +19,7 @@ import { DolarProvider } from "./context/DolarContext";
 import PriceCalculator from "./components/PriceCalculator/PriceCalculator";
 import AdminDashboard from "./components/Pages/Admin/AdminDashboard";
 import AdminProducts from "./components/Pages/Admin/AdminProducts";
+import { SearchProvider } from "./context/SearchContext";
 // Componente para proteger rutas de PAGO (solo requiere login)
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, initialLoading } = useAuth();
@@ -58,6 +59,7 @@ function App() {
   );
 
   return (
+    <SearchProvider>
     <AuthProvider>
       <CartProvider>
         <DolarProvider>
@@ -146,6 +148,7 @@ function App() {
         </DolarProvider>
       </CartProvider>
     </AuthProvider>
+    </SearchProvider>
   );
 }
 

@@ -2,6 +2,8 @@ import { useCart } from "../../context/useCart";
 import { useDolar } from "../../context/DolarContext";
 import { useState,useEffect } from "react";
 import "./ProductsCard.css";
+
+
  const getPreciomostrado=(producto,dolar)=>{
 
 if(producto.price_usd!=null)   return Math.round(producto.price_usd * dolar);
@@ -34,9 +36,7 @@ if (PrecioMostrado === null) return null;
   return (
     <div className="product-card">
       <div className="product-img">
-        {producto.category?.toLowerCase() === "nuevo" && (
-          <span className="badge">Nuevo</span>
-        )}
+       
         <img
           src={producto.images?.[0] || "https://via.placeholder.com/200"}
           alt={producto.title}
@@ -54,6 +54,20 @@ if (PrecioMostrado === null) return null;
         ) : (
           <h3>{producto.title}</h3>
         )}
+        {isEditing ? (
+          <input
+            type="text"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+          />
+        ) : (
+             <span className="badge">{producto.category}  </span>
+        )}
+        
+        
+        
+        
         {isEditing ? (
           <textarea
             name="description"

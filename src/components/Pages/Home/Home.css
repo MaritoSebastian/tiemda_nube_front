@@ -10,7 +10,44 @@
   text-align: center;
   margin-bottom: 30px;
   font-size: 28px;
+
 }
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 30px;
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 45px 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-box input:focus {
+  border-color: #007bff;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
 
 /* GRID BASE (mobile first) */
 .products-grid {

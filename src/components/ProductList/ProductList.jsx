@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import ProductsCard from "../productscard/ProductsCard";
 import { useDolar } from "../../context/DolarContext";
+import { useSearch } from "../../context/SearchContext";
 const ProductList = () => {
 const API_URL = import.meta.env.VITE_API_URL;
+const{search}=useSearch()
 console.log("ENV:", import.meta.env);
 const{refreshTrigger}=useDolar();
   const [productos, setProductos] = useState([]);
   useEffect(() => {
-  
+    
+   
     const obtenerProductos = async () => {
       try {
         const response = await fetch(`${API_URL}/api/products`);
@@ -20,9 +23,12 @@ const{refreshTrigger}=useDolar();
     };
     obtenerProductos();
   }, [API_URL,refreshTrigger]);
+   const productosFiltrados = productos.filter((producto) =>
+    producto.title?.toLowerCase().includes(search.toLowerCase()),
+  );
   return (
     <div className="products-container">
-      {productos.map((producto) => (
+      {productosFiltrados.map((producto) => (
         <ProductsCard key={producto._id} producto={producto} />
       ))}
     </div>
