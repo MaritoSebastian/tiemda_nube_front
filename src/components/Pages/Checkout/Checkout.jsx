@@ -2,6 +2,7 @@ import { useCart } from "../../../context/useCart"
 import "./Checkout.css";
 
 const Checkout = () => {
+  const token = localStorage.getItem("token");
   const { cart, getTotalPrice } = useCart();
   const handleSubmit = async (e) => {
     const API_URL = import.meta.env.VITE_API_URL;
@@ -14,6 +15,7 @@ const Checkout = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
         items: cart.map(item => ({
