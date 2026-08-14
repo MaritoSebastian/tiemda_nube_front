@@ -11,14 +11,14 @@ const Checkout = () => {
   console.log("Botón pagar funcionando");
 
   try {
-    const res = await fetch(`${API_URL}/api/create-preference`  , {
+    const res = await fetch(`${API_URL}/api/orders/create-preference`  , {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
-        items: cart.map(item => ({
+        items: cart.map(item => ({ 
           title: item.title,
           price:Number(item.price),
           quantity: Number(item.quantity)
