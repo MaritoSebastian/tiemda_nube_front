@@ -6,6 +6,7 @@ const Checkout = () => {
   const { cart, getTotalPrice } = useCart();
   const handleSubmit = async (e) => {
     const API_URL = import.meta.env.VITE_API_URL;
+     const API_LOCAL= import.meta.env.VITE_LO_API_URL;
   e.preventDefault();
 
   console.log("Botón pagar funcionando");
