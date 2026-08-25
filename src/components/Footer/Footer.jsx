@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
@@ -24,9 +25,14 @@ const Footer = () => {
 
       </div>
 
-      <div className="footer-bottom">
-        © 2026 Tienda Paraguay - Todos los derechos reservados
-      </div>
+     <div className="footer-bottom">
+  <div className="footer-links">
+    <Link to="/">Inicio</Link>
+    <Link to="/privacy">Política de Privacidad</Link>
+  </div>
+
+  <p>© 2026 Tienda Paraguay - Todos los derechos reservados</p>
+</div>
     </footer>
   );
 };

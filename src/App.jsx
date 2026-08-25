@@ -13,6 +13,7 @@ import Pending from "./components/Pages/PaymentStatus/Pending";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import CreateProduct from "./components/CreateProducts/CreateProduct";
+import PrivacyPolicy from "./components/Pages/PrivacyPolicy/PrivacyPolicy";
 import "./App.css";
 import PasswordResetPage from "./components/Pages/PasswordResetPage";
 import { DolarProvider } from "./context/DolarContext";
@@ -52,19 +53,25 @@ const AdminRoute = ({ children }) => {
 
 function App() {
   const location = useLocation();
-  const hiddenRoutes = ["/success", "/error", "/pending"];
+  const hideNavbar = ["/success", "/error", "/pending", "/privacy"].some((route) =>
+  location.pathname.startsWith(route),
+);
 
-  const hideLayout = hiddenRoutes.some((route) =>
-    location.pathname.startsWith(route),
-  );
+const hideBanner = ["/success", "/error", "/pending", "/privacy" ].some((route) =>
+  location.pathname.startsWith(route),
+);
+
+const hideFooter = ["/success", "/error", "/pending"].some((route) =>
+  location.pathname.startsWith(route),
+);
 
   return (
     <SearchProvider>
     <AuthProvider>
       <CartProvider>
         <DolarProvider>
-          {!hideLayout && <Navbar />}
-          {!hideLayout && <Banner />}
+          {!hideNavbar && <Navbar />}
+          {!hideBanner && <Banner />}
 
           <Routes>
             {/* RUTAS PÚBLICAS (no requieren login) */}
@@ -73,6 +80,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/reset-password" element={<PasswordResetPage />} />
+             <Route path="/privacy" element={<PrivacyPolicy />} />
 
             {/* RUTAS PROTEGIDAS (requieren login para pagar) */}
             <Route
@@ -144,7 +152,7 @@ function App() {
             
           </Routes>
 
-          {!hideLayout && <Footer />}
+          {!hideFooter && <Footer />}
         </DolarProvider>
       </CartProvider>
     </AuthProvider>
