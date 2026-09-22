@@ -11,7 +11,7 @@ const Success = () => {
     }, 4000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="status-container">
