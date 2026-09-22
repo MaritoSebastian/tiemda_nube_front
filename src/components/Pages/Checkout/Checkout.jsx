@@ -67,6 +67,7 @@ const Checkout = () => {
       const data = await res.json();
 
       console.log("Respuesta backend:", data);
+      console.log("ID_DE_LA _ORDEN:",data.orderId)
 
       if (!data.init_point) {
         console.error("No vino init_point:", data);
