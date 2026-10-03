@@ -1,0 +1,364 @@
+.order-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 30px 20px 50px;
+  color: #222;
+}
+
+.order-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.order-header {
+  text-align: center;
+  padding: 35px 25px 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.order-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.order-brand span {
+  font-size: 30px;
+}
+
+.order-brand h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #005baa;
+}
+
+.order-header h2 {
+  margin: 10px 0;
+  font-size: 25px;
+}
+
+.order-header p {
+  margin: 8px auto;
+  max-width: 650px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* =========================
+   COMPRA EXITOSA
+========================= */
+
+.success-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 25px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #f0faf4;
+  border: 1px solid #ccebd8;
+}
+
+.success-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #1b9e55;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.success-box h2 {
+  margin: 0 0 5px;
+  color: #187a43;
+  font-size: 21px;
+}
+
+.success-box p {
+  margin: 0;
+  color: #555;
+}
+
+/* =========================
+   SECCIONES
+========================= */
+
+.order-section {
+  padding: 10px 25px 25px;
+}
+
+.order-section h3 {
+  margin-bottom: 20px;
+  color: #005baa;
+  font-size: 20px;
+}
+
+.order-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.info-item {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.info-item span {
+  display: block;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.info-item strong {
+  display: block;
+  word-break: break-word;
+}
+
+/* =========================
+   PRODUCTOS
+========================= */
+
+.order-products {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+}
+
+.product-info h4 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.product-info p {
+  margin: 4px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.product-subtotal {
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #005baa;
+}
+
+/* =========================
+   TOTAL
+========================= */
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 25px 30px;
+  padding: 22px;
+  border-radius: 10px;
+  background: #005baa;
+  color: white;
+}
+
+.order-total span {
+  font-size: 18px;
+}
+
+.order-total strong {
+  font-size: 25px;
+}
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp-section {
+  text-align: center;
+  padding: 25px;
+  margin: 0 25px 30px;
+  border-radius: 12px;
+  background: #f7faf8;
+  border: 1px solid #e1ebe5;
+}
+
+.whatsapp-section h3 {
+  margin: 0 0 8px;
+  color: #222;
+  font-size: 19px;
+}
+
+.whatsapp-section p {
+  margin: 0 0 18px;
+  color: #666;
+}
+
+.whatsapp-button {
+  border: none;
+  border-radius: 30px;
+  padding: 13px 24px;
+  background: #25d366;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.whatsapp-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.whatsapp-button span {
+  margin-right: 8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.order-footer {
+  text-align: center;
+  padding: 30px 25px 35px;
+  background: #f8f9fa;
+  border-top: 1px solid #eee;
+}
+
+.order-footer h3 {
+  margin-bottom: 12px;
+  color: #005baa;
+}
+
+.order-footer p {
+  margin: 7px auto;
+  max-width: 600px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.order-thanks {
+  font-weight: 600;
+}
+
+/* =========================
+   MENSAJES
+========================= */
+
+.order-message {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 40px;
+  text-align: center;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.order-message h2 {
+  color: #005baa;
+}
+
+.order-message p {
+  color: #666;
+}
+
+.order-message.error h2 {
+  color: #d62828;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .order-page {
+    padding: 15px 10px 30px;
+  }
+
+  .order-header {
+    padding: 25px 18px;
+  }
+
+  .order-brand h1 {
+    font-size: 23px;
+  }
+
+  .order-header h2 {
+    font-size: 21px;
+  }
+
+  .success-box {
+    margin: 18px;
+    padding: 16px;
+  }
+
+  .success-box h2 {
+    font-size: 18px;
+  }
+
+  .order-section {
+    padding: 10px 18px 20px;
+  }
+
+  .order-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-product {
+    align-items: flex-start;
+  }
+
+  .product-subtotal {
+    font-size: 16px;
+  }
+
+  .order-total {
+    margin: 10px 18px 25px;
+    padding: 18px;
+  }
+
+  .order-total span {
+    font-size: 16px;
+  }
+
+  .order-total strong {
+    font-size: 21px;
+  }
+
+  .whatsapp-section {
+    margin: 0 18px 25px;
+    padding: 22px 15px;
+  }
+
+  .whatsapp-button {
+    width: 100%;
+  }
+}

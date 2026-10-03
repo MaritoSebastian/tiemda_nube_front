@@ -20,6 +20,7 @@ import { DolarProvider } from "./context/DolarContext";
 import PriceCalculator from "./components/PriceCalculator/PriceCalculator";
 import AdminDashboard from "./components/Pages/Admin/AdminDashboard";
 import AdminProducts from "./components/Pages/Admin/AdminProducts";
+import OrderDetail from "./components/orederDetail/OrderDetail";
 import { SearchProvider } from "./context/SearchContext";
 // Componente para proteger rutas de PAGO (solo requiere login)
 const ProtectedRoute = ({ children }) => {
@@ -53,109 +54,109 @@ const AdminRoute = ({ children }) => {
 
 function App() {
   const location = useLocation();
-  const hideNavbar = ["/success", "/error", "/pending", "/privacy"].some((route) =>
-  location.pathname.startsWith(route),
-);
+  const hideNavbar = ["/success", "/error", "/pending", "/privacy"].some(
+    (route) => location.pathname.startsWith(route),
+  );
 
-const hideBanner = ["/success", "/error", "/pending", "/privacy" ].some((route) =>
-  location.pathname.startsWith(route),
-);
+  const hideBanner = ["/success", "/error", "/pending", "/privacy"].some(
+    (route) => location.pathname.startsWith(route),
+  );
 
-const hideFooter = ["/success", "/error", "/pending"].some((route) =>
-  location.pathname.startsWith(route),
-);
+  const hideFooter = ["/success", "/error", "/pending"].some((route) =>
+    location.pathname.startsWith(route),
+  );
 
   return (
     <SearchProvider>
-    <AuthProvider>
-      <CartProvider>
-        <DolarProvider>
-          {!hideNavbar && <Navbar />}
-          {!hideBanner && <Banner />}
+      <AuthProvider>
+        <CartProvider>
+          <DolarProvider>
+            {!hideNavbar && <Navbar />}
+            {!hideBanner && <Banner />}
 
-          <Routes>
-            {/* RUTAS PÚBLICAS (no requieren login) */}
-            <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/reset-password" element={<PasswordResetPage />} />
-             <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Routes>
+              {/* RUTAS PÚBLICAS (no requieren login) */}
+              <Route path="/" element={<Home />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/reset-password" element={<PasswordResetPage />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
 
-            {/* RUTAS PROTEGIDAS (requieren login para pagar) */}
-            <Route
-              path="/checkout"
-              element={
-                <ProtectedRoute>
-                  <Checkout />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/success/*"
-              element={
-                <ProtectedRoute>
-                  <Success />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/error/*"
-              element={
-                <ProtectedRoute>
-                  <Error />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/pending/*"
-              element={
-                <ProtectedRoute>
-                  <Pending />
-                </ProtectedRoute>
-              }
-            />
+              {/* RUTAS PROTEGIDAS (requieren login para pagar) */}
+              <Route
+                path="/checkout"
+                element={
+                  <ProtectedRoute>
+                    <Checkout />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/success/*" element={<Success />} />
+              <Route
+                path="/order-detail/:id"
+                element={
+                  <ProtectedRoute>
+                    <OrderDetail />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/error/*"
+                element={
+                  <ProtectedRoute>
+                    <Error />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/pending/*"
+                element={
+                  <ProtectedRoute>
+                    <Pending />
+                  </ProtectedRoute>
+                }
+              />
 
-            {/* RUTAS DE ADMIN (solo para administradores) */}
-            <Route
-              path="/admin/CreateProduct"
-              element={
-                <AdminRoute>
-                  <CreateProduct />
-                </AdminRoute>
-              }
-            />
-            <Route
-              path="/admin/calculator"
-              element={
-                <AdminRoute>
-                  <PriceCalculator />
-                </AdminRoute>
-              }
-            />
-            <Route
-              path="/admin"
-              element={
-                <AdminRoute>
-                  <AdminDashboard />
-                </AdminRoute>
-              }
-            />
-             <Route
-              path="/admin/products"
-              element={
-                <AdminRoute>
-                  <AdminProducts />
-                </AdminRoute>
-              }
-            />
-            
-          </Routes>
+              {/* RUTAS DE ADMIN (solo para administradores) */}
+              <Route
+                path="/admin/CreateProduct"
+                element={
+                  <AdminRoute>
+                    <CreateProduct />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin/calculator"
+                element={
+                  <AdminRoute>
+                    <PriceCalculator />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <AdminRoute>
+                    <AdminDashboard />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin/products"
+                element={
+                  <AdminRoute>
+                    <AdminProducts />
+                  </AdminRoute>
+                }
+              />
+            </Routes>
 
-          {!hideFooter && <Footer />}
-        </DolarProvider>
-      </CartProvider>
-    </AuthProvider>
+            {!hideFooter && <Footer />}
+          </DolarProvider>
+        </CartProvider>
+      </AuthProvider>
     </SearchProvider>
   );
 }
