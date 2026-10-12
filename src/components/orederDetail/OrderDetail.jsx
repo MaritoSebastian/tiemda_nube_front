@@ -6,6 +6,9 @@ const OrderDetail = () => {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [sendingWhatsApp, setSendingWhatsApp] = useState(false);
+  const [whatsappMessage, setWhatsappMessage] = useState("");
+  const [whatsappError, setWhatsappError] = useState("");
 
   const { id } = useParams();
 
@@ -40,6 +43,52 @@ const OrderDetail = () => {
 
     getOrder();
   }, [id]);
+  //funcion llamada a la api
+  const enviarPorWhatsApp = async () => {
+    setSendingWhatsApp(true);
+    setWhatsappMessage("");
+    setWhatsappError("");
+
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        throw new Error("Tu sesión no está activa. Iniciá sesión nuevamente.");
+      }
+
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/whatsapp/enviar-comprobante`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            orderId: order._id,
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.error || "No se pudo enviar el mensaje por WhatsApp.",
+        );
+      }
+
+      setWhatsappMessage("¡Mensaje enviado por WhatsApp correctamente!");
+    } catch (error) {
+      console.error("ERROR AL ENVIAR COMPROBANTE:", error);
+
+      setWhatsappError(
+        error.message || "Ocurrió un error al enviar el mensaje.",
+      );
+    } finally {
+      setSendingWhatsApp(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -213,10 +262,20 @@ const OrderDetail = () => {
 
           <p>Podés recibir este comprobante directamente por WhatsApp.</p>
 
-          <button className="whatsapp-button">
+          <button
+            className="whatsapp-button"
+            onClick={enviarPorWhatsApp}
+            disabled={sendingWhatsApp}
+          >
             <span>☘</span>
-            Enviar comprobante por WhatsApp
+            {sendingWhatsApp
+              ? "Enviando..."
+              : "Enviar comprobante por WhatsApp"}
           </button>
+
+          {whatsappMessage && <p role="status">{whatsappMessage}</p>}
+
+          {whatsappError && <p role="alert">{whatsappError}</p>}
         </div>
 
         {/* MENSAJE FINAL */}
